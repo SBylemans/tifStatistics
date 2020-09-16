@@ -40,7 +40,7 @@ if __name__ == "__main__":
             exit()
         dsiOrDspace = input("Ongeldige keuze: ")
     if dsiOrDspace == 'DSI':
-        download("https://dsi-oefen.omgeving.vlaanderen.be/api/fiches/stukken/{}/document")
+        download("http://dsi-oe.lb.cumuli.be:8080/api/fiches/stukken/{}/document")
     if dsiOrDspace == 'DSPACE':
         token = input("Enter production token: ")
         download("http://archief-algemeen-pr-757.lb.cumuli.be:8080/rest/api/bitstreams/{}/retrieve", token)
