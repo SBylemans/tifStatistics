@@ -26,7 +26,6 @@ def download(url, token = None):
                 else:
                     print(" => Could not retrieve {}".format(id))
                     continue
-                break
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
