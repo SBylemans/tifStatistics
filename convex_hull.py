@@ -35,7 +35,7 @@ def convex_hull(input, imageOutput = None, debug = False):
         if debug:
             print(" - Find contours")
 
-        img_contours = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[-2]
+        img_contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         img_contours = sorted(img_contours, key=cv2.contourArea)
 
         #enkel significante contouren behouden
@@ -61,6 +61,7 @@ def convex_hull(input, imageOutput = None, debug = False):
 
                 c_thresh = 250
                 clusters = hcluster.fclusterdata(contour_centers, c_thresh, criterion="distance")
+                print(clusters)
             else:
                 cont = np.vstack(list(img_contours[i] for i in range(len(img_contours))))
 
@@ -85,12 +86,24 @@ def convex_hull(input, imageOutput = None, debug = False):
     if debug:
         print(" - Calculate white (%)")
 
+    if debug:
+        print(" -- Calculate not masked")
+
     not_masked = np.nonzero(mask)
+
+    if debug:
+        print(" -- Calculate white points")
 
     white_points = 0
     points = len(img[not_masked])
 
+    if debug:
+        print(" -- Calculate thresh image")
+
     threshImage = img[not_masked] - [THRESHOLD,THRESHOLD,THRESHOLD]
+
+    if debug:
+        print(" -- Calculate white points")
 
     white_points = np.count_nonzero((threshImage >= [0,0,0]).all(axis=1))
 
