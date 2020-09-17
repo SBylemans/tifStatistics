@@ -80,6 +80,7 @@ def convex_hull(input, imageOutput = None, debug = False):
             cv2.drawContours(mask, [hull],-1, 255, -1)
 
         np.save(mask_filename, mask)
+        del gray_img, thresh, img_contours
 
     if debug:
         print(" - Calculate white (%)")
@@ -98,6 +99,8 @@ def convex_hull(input, imageOutput = None, debug = False):
             print(" - Save image")
         new_img = cv2.bitwise_and(img, img, mask=mask)
         cv2.imwrite(imageOutput, new_img)
+
+    del mask, threshImage
 
     return (white_points/points)*100
 
