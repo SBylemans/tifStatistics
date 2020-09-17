@@ -24,6 +24,8 @@ with open(stukIds, 'r') as idFile:
         writer = csv.writer(outputCsv)
         writer.writerow(['StukId', 'Wit %', 'InVlaanderen', 'Bestandsgrootte'])
         for [id] in reader:
+            print(" => Executing for id {}".format(id))
+
             if not os.path.isfile(imageFileDirectory+'/'+id+'.tif'):
                 print("File {} not present".format(id))
                 continue

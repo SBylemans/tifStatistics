@@ -102,7 +102,7 @@ def convex_hull(input, imageOutput = None, debug = False):
     return (white_points/points)*100
 
 if __name__ == '__main__':
-    if len(sys.argv) >= 3:
+    if len(sys.argv) >= 4:
         print(convex_hull(sys.argv[1], sys.argv[2], sys.argv[3]))
     else:
         print(convex_hull(sys.argv[1], sys.argv[2]))
