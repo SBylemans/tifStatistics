@@ -6,11 +6,11 @@ import csv
 
 def size(dir, output_dir = None):
     list = []
-    for f in os.listdir():
+    for f in os.listdir(dir):
         try:
             image = cv2.imread(dir+"/"+f)
             width, height,_ = image.shape
-            list.append(f, width, height, ((4*width)*(height-1))+(4*width) > 2147483647)
+            list.append([f, width, height, ((4*width)*(height-1))+(4*width) > 2147483647])
         except Exception as e:
             continue
     if output_dir is None:
