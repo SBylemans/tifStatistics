@@ -7,9 +7,9 @@ import csv
 def hist(dir, output=None):
     if not output is None:
         with open(output, 'w') as out:
+            csvWriter = csv.writer(out)
             csvWriter.writerow(['File', 'Color', 'Color Percentage Above Sat. Thresh.'])
             for f in os.listdir(dir):
-                csvWriter = csv.writer(out)
                 try:
                     l = __histFile(dir +'/'+ f)
                     csvWriter.writerow(l)
