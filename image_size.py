@@ -10,9 +10,9 @@ def size(dir, output_file = None):
         try:
             image = cv2.imread(dir+"/"+f)
             width, height, depth = image.shape
-            list.append([f, width, height, depth])
+            list.append([f, width, height, depth, image.dtype])
         except Exception as e:
-            list.append([f, "", "", ""])
+            list.append([f, "", "", "", ""])
             continue
     if output_file is None:
         return list
@@ -27,7 +27,7 @@ if __name__ == "__main__":
         print("[ERROR] Geef file mee voor ids")
         exit()
     if len(sys.argv) < 3:
-        for (f, w, h, d) in size(sys.argv[1]):
-            print(f,w,h,d)
+        for (f, w, h, d, type) in size(sys.argv[1]):
+            print(f,w,h,d,type)
     else:
         size(sys.argv[1], sys.argv[2])
