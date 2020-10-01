@@ -12,6 +12,7 @@ def size(dir, output_file = None):
             width, height, depth = image.shape
             list.append([f, width, height, depth])
         except Exception as e:
+            list.append([f, "", "", ""])
             continue
     if output_file is None:
         return list
